@@ -7,23 +7,23 @@ import { commands } from "@/lib/vyper-data";
 const cards = [
   {
     icon: ShieldAlert,
-    title: "Deterministic Security Core",
-    desc: "Pattern + semantic checks tuned for Vyper contract risk detection.",
+    title: "Deterministic Analysis Engine",
+    desc: "Pattern detectors and semantic checks calibrated for Vyper-specific contract risks.",
   },
   {
     icon: Bot,
-    title: "AI-Assisted Triage",
-    desc: "Prioritized fix paths with impact-driven narratives for reviewers.",
+    title: "AI-Assisted Review Layer",
+    desc: "Contextual prioritization and remediation guidance built on deterministic findings.",
   },
   {
     icon: FileCode2,
-    title: "Fix Workflow",
-    desc: "Tier-based remediation with dry-run safety controls.",
+    title: "Controlled Remediation Workflow",
+    desc: "Tier-gated auto-fix planning with dry-run and review-safe controls.",
   },
   {
     icon: Activity,
-    title: "Explorer Intelligence",
-    desc: "Analyze deployed addresses using metadata, ABI, and verified source.",
+    title: "Explorer-Based Contract Intelligence",
+    desc: "Address-level analysis using metadata, ABI, and verified source retrieval.",
   },
 ];
 
@@ -42,14 +42,20 @@ export function HeroExperience() {
           transition={{ duration: 0.6 }}
           className="rounded-3xl border border-white/45 bg-white/55 p-8 shadow-[0_20px_60px_rgba(31,41,55,0.14)] backdrop-blur-xl"
         >
-          <p className="font-display text-xs uppercase tracking-[0.28em] text-slate-500">Smart Contract Security Interface</p>
+          <p className="font-display text-xs uppercase tracking-[0.28em] text-slate-500">Vyper Guard Platform</p>
           <h1 className="mt-4 text-4xl font-bold leading-tight text-slate-900 lg:text-6xl">
-            Vyper audits, but in a control room—not a boring landing page.
+            Security analysis infrastructure for Vyper contracts.
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-700">
-            This site is designed as an operational surface for Vyper Guard: static analysis, AI review,
-            remediation planning, detector intelligence, and release telemetry.
+            Vyper Guard unifies deterministic static analysis, AI-assisted audit interpretation, controlled
+            remediation planning, detector intelligence, and project telemetry for development and CI workflows.
           </p>
+
+          <div className="mt-5 flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">
+            <span className="rounded-full border border-slate-300 bg-white/80 px-3 py-1">Deterministic + AI</span>
+            <span className="rounded-full border border-slate-300 bg-white/80 px-3 py-1">12 Detectors</span>
+            <span className="rounded-full border border-slate-300 bg-white/80 px-3 py-1">CLI / JSON / Markdown</span>
+          </div>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
             {cards.map(({ icon: Icon, title, desc }, idx) => (
@@ -78,7 +84,7 @@ export function HeroExperience() {
         >
           <div className="mb-4 flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-cyan-200">
             <Binary className="h-4 w-4" />
-            Command stream
+            Primary CLI workflows
           </div>
 
           <div className="space-y-3 font-mono text-xs leading-relaxed sm:text-sm">
