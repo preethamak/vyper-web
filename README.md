@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vyper Guard Website
 
-## Getting Started
+Custom Next.js website for **Vyper Guard** with:
 
-First, run the development server:
+- Non-generic visual design (glassmorphism + multi-tone gradients)
+- Multi-page documentation and detector catalog
+- Animated command-focused hero experience
+- Recharts analytics from real detector/scoring data
+- Live telemetry from PyPI + GitHub APIs
+
+## Tech Stack
+
+- Next.js 16 (App Router, TypeScript)
+- Tailwind CSS v4
+- Framer Motion (animations)
+- Recharts (data visualization)
+- Lucide icons
+- Google Fonts: Sora + Space Grotesk + JetBrains Mono
+
+## Pages
+
+- `/` Experience page with animated sections and analytics
+- `/docs` Documentation-centric page built from Vyper Guard references
+- `/detectors` Full detector catalog with severity taxonomy
+- `/dashboard` Live metrics + analysis dashboards
+- `/api/project-intel` API route exposing normalized project telemetry
+
+## Data Sources
+
+- Static project data: `src/lib/vyper-data.ts`
+- Live telemetry: `src/lib/live-intel.ts`
+	- PyPI metadata API
+	- PyPIStats downloads API
+	- GitHub repository API
+
+## Run Locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Production Validation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+## Notes
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- The visual language intentionally avoids generic purple/black styling.
+- Chart data for detector/severity/scoring is based on Vyper Guard references.
+- Live telemetry gracefully falls back if external APIs are unavailable.
