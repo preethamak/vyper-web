@@ -41,7 +41,7 @@ export function HeroExperience() {
           <div className="pointer-events-none absolute right-0 top-0 h-28 w-28 rounded-bl-[36px] bg-gradient-to-bl from-amber-300/35 to-cyan-300/20" />
           <p className="font-display text-xs uppercase tracking-[0.28em] text-slate-500">Vyper Guard Platform</p>
           <h1 className="mt-4 text-4xl font-bold leading-tight text-slate-900 lg:text-6xl">
-            Deterministic security for Vyper contracts.
+            Production security confidence for Vyper teams.
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-700 lg:text-lg">
             Static analysis, AI-assisted review, and controlled remediation for local and CI workflows.
