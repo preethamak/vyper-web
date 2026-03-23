@@ -14,44 +14,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 px-4 pt-3 lg:px-8">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-2">
-        <div className="flex items-center justify-between rounded-2xl border border-white/70 bg-white/60 px-4 py-2 backdrop-blur-xl">
-          <div className="flex items-center gap-2 text-xs text-slate-600">
-            <span className="rounded-full bg-slate-900 px-2 py-0.5 font-semibold text-white">v{projectFacts.pypiVersion}</span>
-            <span className="hidden rounded-full border border-slate-300 bg-white px-2 py-0.5 md:inline-flex">Python {projectFacts.python}</span>
-            <span className="hidden rounded-full border border-slate-300 bg-white px-2 py-0.5 md:inline-flex">{projectFacts.license}</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <a
-              href={projectFacts.repository}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-50"
-              aria-label="GitHub"
-            >
-              <GitFork className="h-4 w-4" />
-            </a>
-            <a
-              href={projectFacts.docs}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-50"
-              aria-label="DeepWiki"
-            >
-              <BookMarked className="h-4 w-4" />
-            </a>
-            <a
-              href={projectFacts.pypi}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-50"
-              aria-label="PyPI"
-            >
-              <Package className="h-4 w-4" />
-            </a>
-          </div>
-        </div>
-
+      <div className="mx-auto w-full max-w-7xl">
         <div className="relative overflow-hidden rounded-2xl border border-white/70 bg-white/55 px-4 py-3 shadow-[0_12px_40px_rgba(15,23,42,0.08)] backdrop-blur-xl">
           <div className="pointer-events-none absolute inset-x-6 -top-6 h-10 rounded-full bg-gradient-to-r from-teal-300/35 via-cyan-300/35 to-amber-300/35 blur-xl" />
           <div className="relative mx-auto flex w-full max-w-7xl items-center justify-between gap-3">
@@ -85,7 +48,35 @@ export function SiteHeader() {
               })}
             </nav>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5">
+              <span className="hidden rounded-full bg-slate-900 px-2 py-1 text-[10px] font-semibold text-white xl:inline-flex">v{projectFacts.pypiVersion}</span>
+              <a
+                href={projectFacts.repository}
+                target="_blank"
+                rel="noreferrer"
+                className="hidden h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-50 lg:inline-flex"
+                aria-label="GitHub"
+              >
+                <GitFork className="h-4 w-4" />
+              </a>
+              <a
+                href={projectFacts.docs}
+                target="_blank"
+                rel="noreferrer"
+                className="hidden h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-50 lg:inline-flex"
+                aria-label="DeepWiki"
+              >
+                <BookMarked className="h-4 w-4" />
+              </a>
+              <a
+                href={projectFacts.pypi}
+                target="_blank"
+                rel="noreferrer"
+                className="hidden h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-50 lg:inline-flex"
+                aria-label="PyPI"
+              >
+                <Package className="h-4 w-4" />
+              </a>
               <Link
                 href="/docs#quick-start"
                 className="inline-flex items-center gap-2 rounded-full border border-slate-900/15 bg-white/90 px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:bg-white"
