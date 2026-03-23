@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { HeroExperience } from "@/components/hero-experience";
-import { CommandGrid } from "@/components/command-grid";
+import { LandingOperations } from "@/components/landing-operations";
 import { DocumentationPanels } from "@/components/documentation-panels";
 import { HomeAnalytics } from "@/components/home-analytics";
 
@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <HeroExperience />
 
-      <CommandGrid />
+      <LandingOperations />
       <DocumentationPanels />
 
       <section className="mx-auto mt-14 w-full max-w-7xl px-6 lg:px-10">
