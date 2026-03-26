@@ -11,8 +11,8 @@ export type Detector = {
 export const projectFacts = {
   name: "Vyper Guard",
   tagline: "Vyper-native smart contract security CLI",
-  pypiVersion: "0.3.2",
-  releaseDate: "2026-03-08",
+  pypiVersion: "0.3.4",
+  releaseDate: "2026-03-24",
   python: ">=3.10",
   license: "MIT",
   repository: "https://github.com/preethamak/vyper",
