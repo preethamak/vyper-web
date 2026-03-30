@@ -1,4 +1,5 @@
 # Vyper Guard Website
+[![PyPI Downloads](https://static.pepy.tech/personalized-badge/vyper-guard?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/vyper-guard)
 
 Custom Next.js website for **Vyper Guard** with:
 
