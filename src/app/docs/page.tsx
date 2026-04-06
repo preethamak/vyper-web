@@ -29,10 +29,10 @@ const docsNav = [
 
 export default function DocsPage() {
   return (
-    <main className="docs-page mx-auto w-full max-w-7xl px-6 pb-24 pt-10 lg:px-10">
-      <section className="rounded-3xl border border-white/75 bg-white/70 p-8 backdrop-blur-xl">
+    <main className="docs-page font-alt mx-auto w-full max-w-7xl px-4 pb-24 pt-8 sm:px-6 sm:pt-10 lg:px-10">
+      <section className="rounded-3xl border border-white/75 bg-white/70 p-5 backdrop-blur-xl sm:p-8">
         <p className="text-xs uppercase tracking-[0.22em] text-slate-500">Documentation • Vyper Guard</p>
-        <h1 className="mt-3 text-4xl font-bold text-slate-900">Technical documentation and operational usage</h1>
+        <h1 className="mt-3 text-3xl font-bold text-slate-900 sm:text-4xl">Technical documentation and operational usage</h1>
         <p className="mt-4 max-w-4xl text-slate-700">
           Vyper Guard is a Vyper-native security CLI combining deterministic static analysis,
           semantic context, robust reporting workflows, safe remediation controls, and deployed
@@ -97,7 +97,7 @@ export default function DocsPage() {
         </aside>
 
         <div className="docs-content space-y-6">
-          <article id="overview" className="docs-section rounded-3xl border border-white/80 bg-gradient-to-b from-white/85 to-white/65 p-7 shadow-[0_10px_24px_rgba(15,23,42,0.08)]">
+          <article id="overview" className="docs-section rounded-3xl border border-white/80 bg-gradient-to-b from-white/85 to-white/65 p-5 shadow-[0_10px_24px_rgba(15,23,42,0.08)] sm:p-7">
             <h2 className="font-display text-3xl font-semibold text-slate-900">Overview</h2>
             <p className="mt-3 text-sm leading-relaxed text-slate-700">
               Vyper Guard is a Vyper-focused security analysis CLI designed for developer loops, security
@@ -112,7 +112,7 @@ export default function DocsPage() {
             </p>
           </article>
 
-          <article id="installation" className="docs-section rounded-3xl border border-white/80 bg-gradient-to-b from-white/85 to-white/65 p-7 shadow-[0_10px_24px_rgba(15,23,42,0.08)]">
+          <article id="installation" className="docs-section rounded-3xl border border-white/80 bg-gradient-to-b from-white/85 to-white/65 p-5 shadow-[0_10px_24px_rgba(15,23,42,0.08)] sm:p-7">
             <h2 className="font-display text-3xl font-semibold text-slate-900">Installation</h2>
             <p className="mt-2 text-sm text-slate-700">Install Vyper Guard from PyPI and verify the CLI in your active Python environment.</p>
             <TerminalFrame title="installation">{`pip install vyper-guard
@@ -125,7 +125,7 @@ vyper-guard --help`}</TerminalFrame>
             </ul>
           </article>
 
-          <article id="quick-start" className="docs-section rounded-3xl border border-white/80 bg-gradient-to-b from-white/85 to-white/65 p-7 shadow-[0_10px_24px_rgba(15,23,42,0.08)]">
+          <article id="quick-start" className="docs-section rounded-3xl border border-white/80 bg-gradient-to-b from-white/85 to-white/65 p-5 shadow-[0_10px_24px_rgba(15,23,42,0.08)] sm:p-7">
             <h2 className="font-display text-3xl font-semibold text-slate-900">Quick Start</h2>
             <p className="mt-2 text-sm text-slate-700">Minimal path to first scan, flow view, and graph exports.</p>
             <TerminalFrame title="quick start">{`pip install vyper-guard
@@ -193,7 +193,7 @@ vyper-guard stats contracts/Vault.vy --graph`}</TerminalFrame>
                 <tbody>
                   {commands.map((entry) => (
                     <tr key={entry.command} className="border-t border-slate-200/80">
-                      <td className="px-4 py-3 font-mono text-xs text-slate-900 sm:text-sm">{entry.command}</td>
+                      <td className="break-all px-4 py-3 font-mono text-xs text-slate-900 sm:text-sm">{entry.command}</td>
                       <td className="px-4 py-3 text-slate-600">{entry.description}</td>
                     </tr>
                   ))}
@@ -221,7 +221,7 @@ vyper-guard stats contracts/Vault.vy --graph`}</TerminalFrame>
                 <tbody>
                   {detectors.map((detector) => (
                     <tr key={detector.key} className="border-t border-slate-200/80">
-                      <td className="px-4 py-3 font-mono text-xs text-slate-900 sm:text-sm">{detector.key}</td>
+                      <td className="break-all px-4 py-3 font-mono text-xs text-slate-900 sm:text-sm">{detector.key}</td>
                       <td className="px-4 py-3 text-slate-700">{detector.severity}</td>
                       <td className="px-4 py-3 text-slate-600">{detector.category}</td>
                     </tr>

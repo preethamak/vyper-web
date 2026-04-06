@@ -10,7 +10,7 @@ const severityClass: Record<string, string> = {
 
 export default function DetectorsPage() {
   return (
-    <main className="mx-auto w-full max-w-7xl px-6 pb-20 pt-10 lg:px-10">
+    <main className="mx-auto w-full max-w-7xl px-4 pb-20 pt-10 sm:px-6 lg:px-10">
       <section className="surface-card rounded-xl p-8">
         <p className="text-xs uppercase tracking-[0.22em] text-slate-500">Detector Intelligence</p>
         <h1 className="mt-3 text-4xl font-bold text-slate-900">Vyper Guard detector catalog</h1>

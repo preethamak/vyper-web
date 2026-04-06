@@ -50,7 +50,7 @@ export function HomeCommandStudio() {
   );
 
   return (
-    <section className="mx-auto mt-16 w-full max-w-7xl px-6 lg:px-10">
+    <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 lg:px-10">
       <div className="surface-shell relative overflow-hidden rounded-[2rem] p-6 lg:p-8">
         <div className="absolute -right-14 -top-14 h-40 w-40 rounded-full bg-cyan-400/15 blur-3xl" />
         <div className="absolute -bottom-16 left-12 h-40 w-40 rounded-full bg-amber-400/15 blur-3xl" />

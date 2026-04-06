@@ -42,7 +42,7 @@ const maxSeverity = Math.max(...severityRows.map((item) => item.value), 1);
 
 export function LandingOperations() {
   return (
-    <section className="mx-auto mt-16 w-full max-w-7xl px-6 lg:px-10">
+    <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 lg:px-10">
       <div className="grid gap-4 lg:grid-cols-[0.38fr_0.62fr]">
         <aside className="surface-card brutal-card-hover rounded-[1.6rem] p-6 lg:sticky lg:top-24 lg:h-fit">
           <div className="inline-flex items-center gap-2 rounded-full border-2 border-slate-900 bg-white px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600 shadow-[2px_2px_0_#1f2937]">

@@ -8,7 +8,7 @@ export default async function DashboardPage() {
 
   return (
     <main className="pb-20">
-      <section className="mx-auto w-full max-w-7xl px-6 pt-10 lg:px-10">
+      <section className="mx-auto w-full max-w-7xl px-4 pt-10 sm:px-6 lg:px-10">
         <div className="surface-card rounded-xl p-8">
           <p className="text-xs uppercase tracking-[0.22em] text-slate-500">Live Metrics</p>
           <h1 className="mt-3 text-4xl font-bold text-slate-900">Telemetry + analysis dashboard</h1>

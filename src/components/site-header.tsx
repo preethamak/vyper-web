@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BookMarked, ExternalLink, GitFork, Menu, Package, ShieldCheck, Sparkles, X } from "lucide-react";
@@ -12,6 +13,8 @@ import { cn } from "@/lib/utils";
 export function SiteHeader() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [logoFailed, setLogoFailed] = useState(false);
+  const [mascotBadgeFailed, setMascotBadgeFailed] = useState(false);
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.2 });
 
@@ -23,7 +26,18 @@ export function SiteHeader() {
           <div className="relative mx-auto flex w-full max-w-7xl items-center justify-between gap-3">
             <Link href="/" className="group flex items-center gap-3" onClick={() => setMobileOpen(false)}>
               <div className="grid h-10 w-10 place-content-center rounded-xl border-2 border-slate-900 bg-white shadow-[3px_3px_0_#0f172a] transition group-hover:rotate-3">
-                <ShieldCheck className="h-5 w-5 text-slate-900" />
+                {logoFailed ? (
+                  <ShieldCheck className="h-5 w-5 text-slate-900" />
+                ) : (
+                  <Image
+                    src="/branding/vyper-logo.svg"
+                    alt="Vyper Guard logo"
+                    width={24}
+                    height={24}
+                    className="h-6 w-6"
+                    onError={() => setLogoFailed(true)}
+                  />
+                )}
               </div>
               <div>
                 <p className="font-display text-[11px] uppercase tracking-[0.22em] text-slate-500">Vyper-native security</p>
@@ -52,6 +66,18 @@ export function SiteHeader() {
             </nav>
 
             <div className="flex items-center gap-1.5">
+              {!mascotBadgeFailed ? (
+                <span className="hidden h-9 w-9 overflow-hidden rounded-full border-2 border-slate-900 bg-white shadow-[2px_2px_0_#0f172a] sm:inline-flex">
+                  <Image
+                    src="/branding/vyper-mascot.png"
+                    alt="Vyper mascot"
+                    width={36}
+                    height={36}
+                    className="h-full w-full object-cover"
+                    onError={() => setMascotBadgeFailed(true)}
+                  />
+                </span>
+              ) : null}
               <span className="hidden rounded-full bg-slate-900 px-2 py-1 text-[10px] font-semibold text-white xl:inline-flex">v{projectFacts.pypiVersion}</span>
               <a
                 href={projectFacts.repository}

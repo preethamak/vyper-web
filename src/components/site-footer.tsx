@@ -4,7 +4,7 @@ import { projectFacts } from "@/lib/vyper-data";
 export function SiteFooter() {
   return (
     <footer className="mt-20 border-t-2 border-slate-900 bg-slate-100">
-      <div className="mx-auto grid w-full max-w-7xl gap-6 px-6 py-10 text-sm text-slate-600 md:grid-cols-3 lg:px-10">
+      <div className="mx-auto grid w-full max-w-7xl gap-6 px-4 py-10 text-sm text-slate-600 sm:px-6 md:grid-cols-3 lg:px-10">
         <div className="surface-card rounded-xl p-5">
           <p className="font-display text-lg text-slate-900">Vyper Guard</p>
           <p className="mt-2">Real-time vulnerability monitoring and static security analysis for Vyper contracts.</p>
@@ -36,13 +36,13 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t-2 border-slate-900 bg-slate-200/60">
-        <div className="mx-auto w-full max-w-7xl px-6 py-5 text-center lg:px-10">
+        <div className="mx-auto w-full max-w-7xl px-4 py-5 text-center sm:px-6 lg:px-10">
           <p className="text-sm font-medium text-slate-700">
             Made with <span aria-hidden="true" className="text-rose-500">❤</span> by <span className="font-semibold text-slate-900">AK</span>
           </p>
         </div>
 
-        <div className="mx-auto w-full max-w-7xl px-6 pb-10 lg:px-10">
+        <div className="mx-auto w-full max-w-7xl px-4 pb-10 sm:px-6 lg:px-10">
           <div className="surface-card-subtle rounded-xl p-4">
             <div className="grid gap-3 lg:grid-cols-3">
               <a

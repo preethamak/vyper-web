@@ -20,7 +20,7 @@ const DetectorCategoryChart = dynamic(
 export function DashboardCharts() {
   return (
     <>
-      <section className="mx-auto mt-6 grid w-full max-w-7xl gap-4 px-6 lg:grid-cols-3 lg:px-10">
+      <section className="mx-auto mt-6 grid w-full max-w-7xl gap-4 px-4 sm:px-6 lg:grid-cols-3 lg:px-10">
         <article className="surface-card brutal-card-hover rounded-xl p-5">
           <p className="text-sm font-semibold text-slate-700">Severity distribution</p>
           <DetectorSeverityChart />
@@ -32,7 +32,7 @@ export function DashboardCharts() {
         </article>
       </section>
 
-      <section className="mx-auto mt-4 w-full max-w-7xl px-6 lg:px-10">
+      <section className="mx-auto mt-4 w-full max-w-7xl px-4 sm:px-6 lg:px-10">
         <article className="surface-card brutal-card-hover rounded-xl p-5">
           <p className="text-sm font-semibold text-slate-700">Detector categories</p>
           <DetectorCategoryChart />

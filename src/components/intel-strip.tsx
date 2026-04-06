@@ -27,7 +27,7 @@ export function IntelStrip({ intel }: Props) {
   ];
 
   return (
-    <section className="mx-auto mt-6 w-full max-w-7xl px-6 lg:px-10">
+    <section className="mx-auto mt-6 w-full max-w-7xl px-4 sm:px-6 lg:px-10">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {cards.map((card) => (
           <article key={card.label} className="surface-card brutal-card-hover rounded-xl p-4">

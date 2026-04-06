@@ -25,8 +25,8 @@ export function TerminalFrame({ title = "terminal", children, className = "mt-4"
           const prompt = !isEmpty && !isComment;
 
           return (
-            <div key={`${line}-${index}`} className="min-w-max whitespace-pre">
-              {prompt ? <span className="mr-2 text-emerald-400">$</span> : <span className="mr-2 text-slate-600"> </span>}
+            <div key={`${line}-${index}`} className="whitespace-pre-wrap break-all sm:min-w-max sm:whitespace-pre">
+              {prompt ? <span className="mr-2 text-emerald-400">$ </span> : <span className="mr-2 text-slate-600">  </span>}
               <span className={isComment ? "text-slate-400" : isEmpty ? "text-transparent" : "text-cyan-200"}>{line}</span>
             </div>
           );

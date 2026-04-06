@@ -15,7 +15,7 @@ export default function Home() {
       <HomeCommandStudio />
       <DocumentationPanels />
 
-      <section className="mx-auto mt-16 w-full max-w-7xl px-6 lg:px-10">
+      <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 lg:px-10">
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
           <h2 className="section-title text-2xl">Security analytics model</h2>
           <InteractiveButton

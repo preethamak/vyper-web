@@ -157,48 +157,48 @@ export const gradeScale = [
 export const documentationSections = [
   {
     id: "why",
-    title: "Why teams use Vyper Guard",
+    title: "Why teams keep Vyper Guard in CI",
     content:
-      "Vyper Guard is optimized for Vyper-specific security review. It combines deterministic checks and semantic context so developers get fast, actionable feedback before deployment.",
+      "Teams adopt Vyper Guard because it behaves the same in local runs and in CI. That consistency cuts review noise, shortens triage, and makes release decisions easier to defend.",
     bullets: [
-      "Deterministic static analysis tuned for Vyper patterns",
-      "Signal-first prioritization layered on deterministic findings",
-      "Safe remediation workflow with risk tiers and dry-run",
-      "Deployed address intelligence through explorer APIs",
+      "Deterministic output keeps triage stable",
+      "Severity policy stays consistent from PR to release",
+      "Fix planning remains reviewer-led",
+      "Address analysis supports post-deploy verification",
     ],
   },
   {
     id: "analysis",
-    title: "How analysis actually runs",
+    title: "How a scan executes",
     content:
-      "A scan follows input validation, deterministic detector execution, semantic/AST validation, and final risk synthesis. Reports can then be rendered as CLI, JSON, or Markdown artifacts for auditors and CI systems.",
+      "Each scan follows one clear pipeline: input checks, detector execution, semantic validation, and score synthesis. You can compare results between commits without guessing what changed.",
     bullets: [
-      "Input sanity checks reject empty/comment-only sources",
-      "Pattern + semantic validations reduce false positives",
-      "Severity and score model convert findings into deployment risk",
-      "Output supports human and machine workflows",
+      "Input guardrails reject empty or comment-only files",
+      "Pattern + semantic checks reduce false positives",
+      "Severity penalties map cleanly to deployment risk",
+      "CLI, JSON, and Markdown outputs remain consistent",
     ],
   },
   {
     id: "fix",
-    title: "Remediation model",
+    title: "Remediation controls",
     content:
-      "The fix workflow introduces tiered safety controls. Tier A represents low-risk automatic edits, Tier B requires stronger review, and Tier C is usually advisory with architectural impact.",
+      "Remediation is intentionally conservative. Start with preview mode, set an automation tier, and keep fix plans as review artifacts before applying changes.",
     bullets: [
-      "--fix-dry-run previews changes without writes",
-      "--max-auto-fix-tier constrains automation blast radius",
-      "Fix plans can be exported as JSON for review gates",
+      "`--fix-dry-run` previews changes with zero writes",
+      "`--max-auto-fix-tier` limits automation scope",
+      "JSON fix plans plug into approval workflows",
     ],
   },
   {
     id: "ops",
-    title: "Operational usage",
+    title: "Operational rollout",
     content:
-      "Vyper Guard supports local developer loops, CI enforcement, and live/runtime-oriented workflows. Baseline and monitoring commands support ongoing production vigilance in addition to pre-deploy scanning.",
+      "Roll out in phases: local developer checks first, PR gates next, then release policy enforcement. The same command set works across all stages.",
     bullets: [
-      "CI mode can fail build by severity threshold",
-      "Address-based scans support deployed contract intelligence",
-      "Stats and graphs generate audit artifacts for reporting",
+      "Use severity thresholds to fail unsafe builds",
+      "Run address scans against deployed contracts",
+      "Generate stats/graphs for audit reporting",
     ],
   },
 ] as const;
