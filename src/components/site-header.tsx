@@ -5,8 +5,7 @@ import { motion, useScroll, useSpring } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BookMarked, ExternalLink, GitFork, Menu, Package, ShieldCheck, Sparkles, X } from "lucide-react";
-import { InteractiveButton } from "@/components/interactive-button";
+import { BookMarked, ExternalLink, GitFork, Menu, Package, ShieldCheck, X } from "lucide-react";
 import { navLinks, projectFacts } from "@/lib/vyper-data";
 import { cn } from "@/lib/utils";
 
@@ -94,10 +93,12 @@ export function SiteHeader() {
                 <Package className="h-4 w-4" />
               </a>
               <div className="hidden sm:block">
-                <InteractiveButton href="/docs#quick-start" tone="light" size="sm" className="text-sm">
-                  <Sparkles className="h-4 w-4" />
+                <Link
+                  href="/docs#quick-start"
+                  className="inline-flex h-9 items-center justify-center whitespace-nowrap rounded-full border-2 border-slate-900 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-[3px_3px_0_#1f2937] transition hover:-translate-y-0.5 hover:bg-slate-100 active:translate-y-0 active:shadow-[1px_1px_0_#1f2937]"
+                >
                   Launch Docs
-                </InteractiveButton>
+                </Link>
               </div>
               <button
                 type="button"
