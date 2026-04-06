@@ -205,6 +205,7 @@ export const documentationSections = [
 
 export const navLinks = [
   { href: "/", label: "Experience" },
+  { href: "/workbench", label: "Workbench" },
   { href: "/docs", label: "Documentation" },
   { href: "/detectors", label: "Detectors" },
   { href: "/dashboard", label: "Live Metrics" },

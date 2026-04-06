@@ -38,6 +38,13 @@ export function CommandPalette() {
         run: () => router.push("/docs"),
       },
       {
+        label: "Open Workbench",
+        hint: "Workbench",
+        keywords: "workbench terminal run command cli",
+        toastAction: "open_workbench",
+        run: () => router.push("/workbench"),
+      },
+      {
         label: "Jump to Quick Start",
         hint: "QuickStart",
         keywords: "quickstart install first scan",
@@ -164,6 +171,8 @@ export function CommandPalette() {
                   ) : action.hint === "Docs" || action.hint === "DeepWiki" ? (
                     <BookMarked className="h-4 w-4" />
                   ) : action.hint === "Catalog" ? (
+                    <TerminalSquare className="h-4 w-4" />
+                  ) : action.hint === "Workbench" ? (
                     <TerminalSquare className="h-4 w-4" />
                   ) : action.hint === "Dashboard" ? (
                     <LayoutDashboard className="h-4 w-4" />

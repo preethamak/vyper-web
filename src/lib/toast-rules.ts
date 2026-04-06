@@ -8,6 +8,7 @@ export type ToastAction =
   | "open_pypi"
   | "open_detectors"
   | "open_dashboard"
+  | "open_workbench"
   | "open_scoring"
   | "copy_command"
   | "copy_failed"
@@ -40,6 +41,7 @@ const routeToastRules: Record<ToastRoute, Partial<Record<ToastAction, { message:
     open_ci_cd: { message: "Opening CI/CD guide", tone: "info" },
     open_detectors: { message: "Opening detector catalog", tone: "info" },
     open_dashboard: { message: "Opening live metrics", tone: "info" },
+    open_workbench: { message: "Opening workbench", tone: "info" },
     open_repository: { message: "Opened repository", tone: "success" },
     open_pypi: { message: "Opened PyPI package", tone: "success" },
     action_failed: { message: "Action failed", tone: "error" },
