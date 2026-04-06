@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { TerminalFrame } from "@/components/terminal-frame";
+import { DocsAppendixActions, DocsExploreActions, DocsPrimaryActions } from "@/components/docs-action-clusters";
 import { commands, detectors, gradeScale, projectFacts, severityPenalty } from "@/lib/vyper-data";
 
 const docsNav = [
@@ -10,7 +10,7 @@ const docsNav = [
   { id: "analysis-lifecycle", label: "Analysis Lifecycle" },
   { id: "command-reference", label: "Command Reference" },
   { id: "detector-taxonomy", label: "Detector Taxonomy" },
-  { id: "ai-assisted", label: "AI-Assisted Audit" },
+  { id: "ai-assisted", label: "Prioritization Layer" },
   { id: "ast-flow", label: "AST & Flow Views" },
   { id: "remediation", label: "Remediation / Fix" },
   { id: "explorer", label: "Explorer + Address Analysis" },
@@ -35,18 +35,43 @@ export default function DocsPage() {
         <h1 className="mt-3 text-4xl font-bold text-slate-900">Technical documentation and operational usage</h1>
         <p className="mt-4 max-w-4xl text-slate-700">
           Vyper Guard is a Vyper-native security CLI combining deterministic static analysis,
-          semantic context, AI-assisted explanations, safe remediation workflows, and deployed
+          semantic context, robust reporting workflows, safe remediation controls, and deployed
           contract intelligence.
         </p>
 
-        <div className="mt-6 flex flex-wrap gap-2">
-          <a href={projectFacts.repository} target="_blank" rel="noreferrer" className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50">GitHub Repository</a>
-          <a href={projectFacts.docs} target="_blank" rel="noreferrer" className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50">DeepWiki Documentation</a>
-          <a href={projectFacts.pypi} target="_blank" rel="noreferrer" className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50">PyPI Package</a>
-        </div>
+        <DocsPrimaryActions />
       </section>
 
-      <section className="mt-8 grid gap-4 lg:grid-cols-[0.3fr_0.7fr]">
+      <section className="mt-6 grid gap-3 md:grid-cols-3">
+        <article className="surface-card brutal-card-hover rounded-xl p-4">
+          <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500">Step 1</p>
+          <h2 className="mt-1 text-lg font-semibold text-slate-900">Install and verify</h2>
+          <p className="mt-2 text-sm text-slate-600">Get to a valid local setup in less than 60 seconds.</p>
+          <p className="mt-3 rounded-lg border-2 border-slate-900 bg-slate-50 px-3 py-2 font-mono text-xs text-slate-800">
+            pip install vyper-guard
+          </p>
+        </article>
+
+        <article className="surface-card brutal-card-hover rounded-xl p-4">
+          <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500">Step 2</p>
+          <h2 className="mt-1 text-lg font-semibold text-slate-900">Run first scan</h2>
+          <p className="mt-2 text-sm text-slate-600">Produce deterministic findings and baseline score.</p>
+          <p className="mt-3 rounded-lg border-2 border-slate-900 bg-slate-50 px-3 py-2 font-mono text-xs text-slate-800">
+            vyper-guard analyze contracts/Vault.vy
+          </p>
+        </article>
+
+        <article className="surface-card brutal-card-hover rounded-xl p-4">
+          <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500">Step 3</p>
+          <h2 className="mt-1 text-lg font-semibold text-slate-900">Export for CI</h2>
+          <p className="mt-2 text-sm text-slate-600">Generate machine-readable artifacts for release policy.</p>
+          <p className="mt-3 rounded-lg border-2 border-slate-900 bg-slate-50 px-3 py-2 font-mono text-xs text-slate-800">
+            vyper-guard stats contracts/Vault.vy --graph
+          </p>
+        </article>
+      </section>
+
+      <section className="mt-8 grid gap-4 lg:grid-cols-[0.28fr_0.72fr]">
         <aside className="rounded-2xl border border-white/70 bg-white/70 p-5 shadow-[0_10px_30px_rgba(15,23,42,0.08)] lg:sticky lg:top-24 lg:h-fit">
           <p className="text-xs uppercase tracking-[0.18em] text-slate-500">On this page</p>
           <ul className="mt-3 space-y-2 text-sm">
@@ -102,10 +127,9 @@ vyper-guard --help`}</TerminalFrame>
 
           <article id="quick-start" className="docs-section rounded-3xl border border-white/80 bg-gradient-to-b from-white/85 to-white/65 p-7 shadow-[0_10px_24px_rgba(15,23,42,0.08)]">
             <h2 className="font-display text-3xl font-semibold text-slate-900">Quick Start</h2>
-            <p className="mt-2 text-sm text-slate-700">Minimal path to first scan, AI triage, flow view, and graph exports.</p>
+            <p className="mt-2 text-sm text-slate-700">Minimal path to first scan, flow view, and graph exports.</p>
             <TerminalFrame title="quick start">{`pip install vyper-guard
 vyper-guard analyze contracts/Vault.vy
-vyper-guard analyze contracts/Vault.vy --ai
 vyper-guard ast contracts/Vault.vy --format json
 vyper-guard flow contracts/Vault.vy --format mermaid
 vyper-guard stats contracts/Vault.vy --graph`}</TerminalFrame>
@@ -158,7 +182,7 @@ vyper-guard stats contracts/Vault.vy --graph`}</TerminalFrame>
 
           <article id="command-reference" className="docs-section rounded-3xl border border-white/80 bg-gradient-to-b from-white/85 to-white/65 p-7 shadow-[0_10px_24px_rgba(15,23,42,0.08)]">
             <h2 className="font-display text-3xl font-semibold text-slate-900">Command reference</h2>
-            <div className="mt-4 overflow-hidden rounded-xl border border-slate-200">
+            <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200">
               <table className="w-full text-left text-sm">
                 <thead className="bg-slate-100/80 text-slate-700">
                   <tr>
@@ -185,7 +209,7 @@ vyper-guard stats contracts/Vault.vy --graph`}</TerminalFrame>
           <article id="detector-taxonomy" className="docs-section rounded-3xl border border-white/80 bg-gradient-to-b from-white/85 to-white/65 p-7 shadow-[0_10px_24px_rgba(15,23,42,0.08)]">
             <h2 className="font-display text-3xl font-semibold text-slate-900">Detector taxonomy</h2>
             <p className="mt-2 text-sm text-slate-700">Detector inventory grouped by category and operational intent.</p>
-            <div className="mt-4 overflow-hidden rounded-xl border border-slate-200">
+            <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200">
               <table className="w-full text-left text-sm">
                 <thead className="bg-slate-100/80 text-slate-700">
                   <tr>
@@ -444,19 +468,12 @@ python -m pytest -q`}</TerminalFrame>
               command references, and detector/scoring model representation in the project context. For upstream
               implementation details and release notes, use the linked repository and package pages.
             </p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              <a href={projectFacts.repository} target="_blank" rel="noreferrer" className="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-slate-700">Repository</a>
-              <a href={projectFacts.docs} target="_blank" rel="noreferrer" className="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-slate-700">DeepWiki</a>
-              <a href={projectFacts.pypi} target="_blank" rel="noreferrer" className="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-slate-700">PyPI</a>
-            </div>
+            <DocsAppendixActions />
           </article>
 
           <article className="docs-section rounded-3xl border border-white/80 bg-gradient-to-b from-white/85 to-white/65 p-7 shadow-[0_10px_24px_rgba(15,23,42,0.08)]">
             <h2 className="font-display text-3xl font-semibold text-slate-900">Continue exploring</h2>
-            <div className="mt-4 flex flex-wrap gap-2">
-              <Link href="/detectors" className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50">Open detector catalog</Link>
-              <Link href="/dashboard" className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50">Open live metrics</Link>
-            </div>
+            <DocsExploreActions />
           </article>
         </div>
       </section>

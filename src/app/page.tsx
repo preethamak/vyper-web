@@ -1,9 +1,10 @@
 import { ArrowRight } from "lucide-react";
-import Link from "next/link";
 import { HeroExperience } from "@/components/hero-experience";
 import { LandingOperations } from "@/components/landing-operations";
 import { DocumentationPanels } from "@/components/documentation-panels";
 import { HomeAnalytics } from "@/components/home-analytics";
+import { HomeCommandStudio } from "@/components/home-command-studio";
+import { InteractiveButton } from "@/components/interactive-button";
 
 export default function Home() {
   return (
@@ -11,18 +12,21 @@ export default function Home() {
       <HeroExperience />
 
       <LandingOperations />
+      <HomeCommandStudio />
       <DocumentationPanels />
 
-      <section className="mx-auto mt-14 w-full max-w-7xl px-6 lg:px-10">
-        <div className="mb-5 flex items-center justify-between">
-          <h2 className="text-2xl font-bold text-slate-900">Security analytics model</h2>
-          <Link
+      <section className="mx-auto mt-16 w-full max-w-7xl px-6 lg:px-10">
+        <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+          <h2 className="section-title text-2xl">Security analytics model</h2>
+          <InteractiveButton
             href="/dashboard"
-            className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/75 px-4 py-2 text-sm font-medium text-slate-800 transition hover:-translate-y-0.5"
+            className="text-slate-800"
+            tone="light"
+            size="md"
           >
             Open Live Metrics
             <ArrowRight className="h-4 w-4" />
-          </Link>
+          </InteractiveButton>
         </div>
 
         <HomeAnalytics />

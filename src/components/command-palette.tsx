@@ -3,17 +3,21 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { BookMarked, ExternalLink, GitFork, LayoutDashboard, Search, ShieldCheck, TerminalSquare } from "lucide-react";
+import { useToast } from "@/components/toast-provider";
+import { resolveToast, type ToastAction } from "@/lib/toast-rules";
 import { projectFacts } from "@/lib/vyper-data";
 
 type Action = {
   label: string;
   hint: string;
   keywords: string;
+  toastAction: ToastAction;
   run: () => void;
 };
 
 export function CommandPalette() {
   const router = useRouter();
+  const { showToast } = useToast();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
 
@@ -23,42 +27,63 @@ export function CommandPalette() {
         label: "Open Experience",
         hint: "Home",
         keywords: "home experience landing",
+        toastAction: "open_home",
         run: () => router.push("/"),
       },
       {
         label: "Open Documentation",
         hint: "Docs",
         keywords: "docs documentation guide",
+        toastAction: "open_docs",
         run: () => router.push("/docs"),
+      },
+      {
+        label: "Jump to Quick Start",
+        hint: "QuickStart",
+        keywords: "quickstart install first scan",
+        toastAction: "open_quick_start",
+        run: () => router.push("/docs#quick-start"),
+      },
+      {
+        label: "Jump to CI/CD Guide",
+        hint: "CI",
+        keywords: "ci cd github actions pipeline",
+        toastAction: "open_ci_cd",
+        run: () => router.push("/docs#ci-cd"),
       },
       {
         label: "Open Detectors",
         hint: "Catalog",
         keywords: "detectors vulnerabilities security",
+        toastAction: "open_detectors",
         run: () => router.push("/detectors"),
       },
       {
         label: "Open Live Metrics",
         hint: "Dashboard",
         keywords: "dashboard metrics charts",
+        toastAction: "open_dashboard",
         run: () => router.push("/dashboard"),
       },
       {
         label: "Open GitHub Repository",
         hint: "Source",
         keywords: "github repo source code",
+        toastAction: "open_repository",
         run: () => window.open(projectFacts.repository, "_blank", "noopener,noreferrer"),
       },
       {
         label: "Open DeepWiki Documentation",
         hint: "DeepWiki",
         keywords: "deepwiki docs wiki",
+        toastAction: "open_docs",
         run: () => window.open(projectFacts.docs, "_blank", "noopener,noreferrer"),
       },
       {
         label: "Open PyPI Package",
         hint: "PyPI",
         keywords: "pypi package install",
+        toastAction: "open_pypi",
         run: () => window.open(projectFacts.pypi, "_blank", "noopener,noreferrer"),
       },
     ],
@@ -92,7 +117,14 @@ export function CommandPalette() {
   }, []);
 
   const runAction = (action: Action) => {
-    action.run();
+    try {
+      action.run();
+      const toast = resolveToast("palette", action.toastAction);
+      showToast(toast.message, toast.tone);
+    } catch {
+      const failureToast = resolveToast("palette", "action_failed");
+      showToast(failureToast.message, failureToast.tone);
+    }
     setOpen(false);
     setQuery("");
   };
@@ -102,24 +134,24 @@ export function CommandPalette() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="fixed bottom-5 right-5 z-[70] inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/80 px-3 py-2 text-xs font-semibold text-slate-800 shadow-[0_10px_25px_rgba(15,23,42,0.15)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:bg-white"
+        className="fixed bottom-5 right-5 z-[70] inline-flex items-center gap-2 rounded-full border-2 border-slate-900 bg-white px-3 py-2 text-xs font-semibold text-slate-900 shadow-[4px_4px_0_#0f172a] transition hover:-translate-y-0.5"
         aria-label="Open command palette"
       >
         <Search className="h-3.5 w-3.5" />
         Quick Jump
-        <span className="rounded-md border border-slate-300 bg-white px-1.5 py-0.5 font-mono text-[10px]">Ctrl K</span>
+        <span className="rounded-md border-2 border-slate-900 bg-slate-100 px-1.5 py-0.5 font-mono text-[10px] text-slate-700">Ctrl K</span>
       </button>
 
       {open ? (
         <div className="fixed inset-0 z-[80] grid place-items-start bg-slate-900/35 p-4 pt-24 backdrop-blur-sm" onClick={() => setOpen(false)}>
-          <div className="w-full max-w-2xl rounded-2xl border border-white/70 bg-white p-3 shadow-[0_30px_80px_rgba(2,6,23,0.25)]" onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
+          <div className="w-full max-w-2xl rounded-2xl border-2 border-slate-900 bg-white p-3 text-slate-900 shadow-[6px_6px_0_#0f172a]" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center gap-2 rounded-xl border-2 border-slate-900 bg-slate-50 px-3 py-2">
               <Search className="h-4 w-4 text-slate-500" />
               <input
                 autoFocus
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="w-full bg-transparent text-sm outline-none"
+                className="w-full bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-500"
                 placeholder="Jump to docs, detectors, dashboard, github..."
               />
             </div>
@@ -148,11 +180,11 @@ export function CommandPalette() {
                     onClick={() => runAction(action)}
                     className="flex w-full items-center justify-between rounded-xl border border-transparent px-3 py-2 text-left transition hover:border-slate-200 hover:bg-slate-50"
                   >
-                    <span className="flex items-center gap-2 text-sm text-slate-800">
+                    <span className="flex items-center gap-2 text-sm text-slate-900">
                       {icon}
                       {action.label}
                     </span>
-                    <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+                    <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-600">
                       {action.hint}
                     </span>
                   </button>

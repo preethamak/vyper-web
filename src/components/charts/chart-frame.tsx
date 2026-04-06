@@ -40,7 +40,7 @@ export function ChartFrame({ className = "", minHeight = 280, children }: Props)
       {size.width > 0 ? (
         children(size)
       ) : (
-        <div className="h-full w-full animate-pulse rounded-2xl bg-slate-200/60" />
+        <div className="skeleton-brutal h-full w-full" />
       )}
     </div>
   );

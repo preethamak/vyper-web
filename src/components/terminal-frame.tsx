@@ -8,12 +8,12 @@ export function TerminalFrame({ title = "terminal", children, className = "mt-4"
   const lines = children.split("\n");
 
   return (
-    <div className={`${className} overflow-hidden rounded-2xl border border-slate-300/80 bg-slate-950 shadow-[0_16px_40px_rgba(2,6,23,0.35)]`}>
-      <div className="flex items-center justify-between border-b border-slate-800 bg-slate-900/90 px-4 py-2">
+    <div className={`${className} overflow-hidden rounded-xl border-2 border-slate-900 bg-slate-950 shadow-[4px_4px_0_#0f172a]`}>
+      <div className="flex items-center justify-between border-b-2 border-slate-700 bg-slate-900 px-4 py-2">
         <div className="flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
-          <span className="h-2.5 w-2.5 rounded-full bg-amber-300" />
-          <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
+          <span className="h-2.5 w-2.5 rounded-sm bg-red-400" />
+          <span className="h-2.5 w-2.5 rounded-sm bg-amber-300" />
+          <span className="h-2.5 w-2.5 rounded-sm bg-emerald-400" />
         </div>
         <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-slate-400">{title}</p>
       </div>

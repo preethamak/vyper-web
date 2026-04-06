@@ -1,26 +1,29 @@
 "use client";
 
+import { useState } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BookMarked, ExternalLink, GitFork, Package, ShieldCheck, Sparkles } from "lucide-react";
+import { BookMarked, ExternalLink, GitFork, Menu, Package, ShieldCheck, Sparkles, X } from "lucide-react";
+import { InteractiveButton } from "@/components/interactive-button";
 import { navLinks, projectFacts } from "@/lib/vyper-data";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const [mobileOpen, setMobileOpen] = useState(false);
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.2 });
 
   return (
     <header className="sticky top-0 z-50 px-4 pt-3 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">
-        <div className="relative overflow-hidden rounded-2xl border border-white/70 bg-white/55 px-4 py-3 shadow-[0_12px_40px_rgba(15,23,42,0.08)] backdrop-blur-xl">
-          <div className="pointer-events-none absolute inset-x-6 -top-6 h-10 rounded-full bg-gradient-to-r from-teal-300/35 via-cyan-300/35 to-amber-300/35 blur-xl" />
+        <div className="surface-shell relative overflow-hidden rounded-2xl px-4 py-3">
+          <div className="pointer-events-none absolute inset-x-6 -top-6 h-10 rounded-full bg-gradient-to-r from-cyan-300/20 via-cyan-300/30 to-amber-300/20 blur-xl" />
           <div className="relative mx-auto flex w-full max-w-7xl items-center justify-between gap-3">
-            <Link href="/" className="group flex items-center gap-3">
-              <div className="grid h-10 w-10 place-content-center rounded-xl border border-white/40 bg-gradient-to-br from-teal-300/70 via-cyan-200/70 to-amber-200/80 shadow-[0_6px_20px_rgba(0,0,0,0.12)] transition group-hover:rotate-3">
-                <ShieldCheck className="h-5 w-5 text-slate-800" />
+            <Link href="/" className="group flex items-center gap-3" onClick={() => setMobileOpen(false)}>
+              <div className="grid h-10 w-10 place-content-center rounded-xl border-2 border-slate-900 bg-white shadow-[3px_3px_0_#0f172a] transition group-hover:rotate-3">
+                <ShieldCheck className="h-5 w-5 text-slate-900" />
               </div>
               <div>
                 <p className="font-display text-[11px] uppercase tracking-[0.22em] text-slate-500">Vyper-native security</p>
@@ -28,7 +31,7 @@ export function SiteHeader() {
               </div>
             </Link>
 
-            <nav className="hidden items-center gap-1 rounded-full border border-white/70 bg-white/70 p-1 md:flex">
+            <nav className="hidden items-center gap-1 rounded-full border-2 border-slate-900 bg-white p-1 md:flex">
               {navLinks.map((link) => {
                 const active = pathname === link.href;
                 return (
@@ -38,8 +41,8 @@ export function SiteHeader() {
                     className={cn(
                       "rounded-full px-4 py-2 text-sm font-medium transition",
                       active
-                        ? "bg-slate-900 text-white shadow-sm"
-                        : "text-slate-700 hover:bg-white hover:text-slate-900",
+                        ? "bg-slate-900 text-white"
+                        : "text-slate-700 hover:bg-slate-100 hover:text-slate-900",
                     )}
                   >
                     {link.label}
@@ -54,7 +57,7 @@ export function SiteHeader() {
                 href={projectFacts.repository}
                 target="_blank"
                 rel="noreferrer"
-                className="hidden h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-50 lg:inline-flex"
+                className="hidden h-9 w-9 items-center justify-center rounded-full border-2 border-slate-900 bg-white text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-100 lg:inline-flex"
                 aria-label="GitHub"
               >
                 <GitFork className="h-4 w-4" />
@@ -63,7 +66,7 @@ export function SiteHeader() {
                 href={projectFacts.docs}
                 target="_blank"
                 rel="noreferrer"
-                className="hidden h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-50 lg:inline-flex"
+                className="hidden h-9 w-9 items-center justify-center rounded-full border-2 border-slate-900 bg-white text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-100 lg:inline-flex"
                 aria-label="DeepWiki"
               >
                 <BookMarked className="h-4 w-4" />
@@ -72,23 +75,31 @@ export function SiteHeader() {
                 href={projectFacts.pypi}
                 target="_blank"
                 rel="noreferrer"
-                className="hidden h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-50 lg:inline-flex"
+                className="hidden h-9 w-9 items-center justify-center rounded-full border-2 border-slate-900 bg-white text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-100 lg:inline-flex"
                 aria-label="PyPI"
               >
                 <Package className="h-4 w-4" />
               </a>
-              <Link
-                href="/docs#quick-start"
-                className="inline-flex items-center gap-2 rounded-full border border-slate-900/15 bg-white/90 px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:bg-white"
+              <div className="hidden sm:block">
+                <InteractiveButton href="/docs#quick-start" tone="light" size="sm" className="text-sm">
+                  <Sparkles className="h-4 w-4" />
+                  Launch Docs
+                </InteractiveButton>
+              </div>
+              <button
+                type="button"
+                onClick={() => setMobileOpen((prev) => !prev)}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border-2 border-slate-900 bg-white text-slate-800 transition hover:bg-slate-100 md:hidden"
+                aria-expanded={mobileOpen}
+                aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
               >
-                <Sparkles className="h-4 w-4" />
-                Launch Docs
-              </Link>
+                {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+              </button>
               <a
                 href={projectFacts.docs}
                 target="_blank"
                 rel="noreferrer"
-                className="hidden items-center gap-1 rounded-full border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50 lg:inline-flex"
+                className="hidden items-center gap-1 rounded-full border-2 border-slate-900 bg-white px-3 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-100 lg:inline-flex"
               >
                 API
                 <ExternalLink className="h-3.5 w-3.5" />
@@ -96,6 +107,29 @@ export function SiteHeader() {
             </div>
           </div>
         </div>
+
+        {mobileOpen ? (
+          <div className="mt-3 rounded-2xl border-2 border-slate-900 bg-white p-3 shadow-[4px_4px_0_#0f172a] md:hidden">
+            <nav className="grid gap-2">
+              {navLinks.map((link) => {
+                const active = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={cn(
+                      "rounded-xl px-4 py-3 text-sm font-semibold",
+                      active ? "bg-slate-900 text-white" : "bg-slate-100 text-slate-800",
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+            </nav>
+          </div>
+        ) : null}
       </div>
 
       <motion.div

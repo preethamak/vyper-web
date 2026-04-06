@@ -159,10 +159,10 @@ export const documentationSections = [
     id: "why",
     title: "Why teams use Vyper Guard",
     content:
-      "Vyper Guard is optimized for Vyper-specific security review. It combines deterministic checks, semantic context, and optional AI-assisted reporting so developers get fast, actionable feedback before deployment.",
+      "Vyper Guard is optimized for Vyper-specific security review. It combines deterministic checks and semantic context so developers get fast, actionable feedback before deployment.",
     bullets: [
       "Deterministic static analysis tuned for Vyper patterns",
-      "AI-assisted prioritization layered on deterministic findings",
+      "Signal-first prioritization layered on deterministic findings",
       "Safe remediation workflow with risk tiers and dry-run",
       "Deployed address intelligence through explorer APIs",
     ],

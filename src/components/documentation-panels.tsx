@@ -2,13 +2,20 @@ import { documentationSections } from "@/lib/vyper-data";
 
 export function DocumentationPanels() {
   return (
-    <section className="mx-auto mt-14 w-full max-w-7xl px-6 lg:px-10">
-      <div className="grid gap-4 lg:grid-cols-2">
-        {documentationSections.map((section) => (
+    <section className="mx-auto mt-16 w-full max-w-7xl px-6 lg:px-10">
+      <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <p className="section-kicker">Documentation Surface</p>
+          <h2 className="section-title mt-2 text-3xl">Learn in product-shaped blocks</h2>
+        </div>
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {documentationSections.map((section, index) => (
           <article
             id={section.id}
             key={section.id}
-            className="rounded-3xl border border-white/75 bg-white/60 p-7 shadow-[0_12px_35px_rgba(15,23,42,0.11)] backdrop-blur-xl"
+            className={`surface-card rounded-[1.2rem] p-6 ${index === 0 ? "xl:col-span-2" : ""}`}
           >
             <p className="text-xs uppercase tracking-[0.2em] text-slate-500">{section.id}</p>
             <h3 className="mt-2 text-2xl font-semibold text-slate-900">{section.title}</h3>
