@@ -12,14 +12,14 @@ const featuredCommands = [
   {
     command: "vyper-guard analyze contracts/Vault.vy",
     title: "Baseline scan",
-    description: "Run deterministic checks and grade deployment readiness.",
-    output: `Analyzing Vault.vy\n12 detectors loaded\ncritical: 2\nhigh: 3\nscore: 74 / 100\nrecommendation: Review required`,
+    description: "Run deterministic checks and grade deployment readiness for one contract file.",
+    output: `Analyzing Vault.vy\n12 detectors loaded\ncritical: 2\nhigh: 8\ngrade model: A+ / A / B / C / F\nrecommendation: review required`,
   },
   {
-    command: "vyper-guard fix contracts/Vault.vy --fix-dry-run --max-auto-fix-tier B",
+    command: "vyper-guard analyze contracts/Vault.vy --fix-dry-run --max-auto-fix-tier B --fix-report remediation-report.json",
     title: "Dry-run remediation",
     description: "Preview safe edits before any write operation.",
-    output: `Dry run only\nmax tier: B\nproposed edits: 3\nfiles changed: 1\nwrite operations: 0\nplan exported: reports/fix-plan.json`,
+    output: `Dry run only\nmax tier: B\nproposed edits: 3\nfiles changed: 1\nwrite operations: 0\nreport: remediation-report.json`,
   },
   {
     command: "vyper-guard stats contracts/Vault.vy --graph",
@@ -28,10 +28,10 @@ const featuredCommands = [
     output: `Building report artifacts\nseverity histogram: ready\ncategory spread: ready\nscore model: ready\nhtml report: reports/vault-security.html`,
   },
   {
-    command: "vyper-guard analyze-address 0xYourAddress --format json",
+    command: "vyper-guard analyze-address 0xYourAddress --format json --ai-triage",
     title: "Post-deploy review",
     description: "Check deployed contracts using explorer-backed lookup.",
-    output: `Resolving verified source\nnetwork: ethereum\ncontract: Vault\nrisk score: 79 / 100\nrecommendation: minor fixes before upgrade`,
+    output: `Resolving verified source\nnetwork: ethereum\nsource language: vyper|solidity|unknown\nabi metadata: collected\nrecommendation: review findings before upgrade`,
   },
 ] as const;
 

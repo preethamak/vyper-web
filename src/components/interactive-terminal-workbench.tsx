@@ -5,6 +5,7 @@ import { Loader2, Play, TerminalSquare } from "lucide-react";
 import { CliTerminalOutput } from "@/components/cli-terminal-output";
 import { CodeSyntaxEditor } from "@/components/code-syntax-editor";
 import { InteractiveButton } from "@/components/interactive-button";
+import { SarvamAssistPanel } from "@/components/sarvam-assist-panel";
 import { workbenchCommands, type CommandInput, type PresetId } from "@/lib/workbench-commands";
 
 type RunResponse = {
@@ -38,6 +39,44 @@ def withdraw(amount: uint256):
     self.balances[msg.sender] -= amount
     send(msg.sender, amount)`;
 
+function countMatches(text: string, regex: RegExp) {
+  const matches = text.match(regex);
+  return matches ? matches.length : 0;
+}
+
+function parseSeverityCounts(text: string) {
+  const patterns: Array<[keyof ReturnType<typeof parseSeverityCounts>, RegExp]> = [
+    ["critical", /CRITICAL\s+(\d+)/i],
+    ["high", /HIGH\s+(\d+)/i],
+    ["medium", /MEDIUM\s+(\d+)/i],
+    ["low", /LOW\s+(\d+)/i],
+    ["info", /INFO\s+(\d+)/i],
+  ];
+
+  const counts = {
+    critical: 0,
+    high: 0,
+    medium: 0,
+    low: 0,
+    info: 0,
+  };
+
+  let matchedAny = false;
+
+  for (const [key, regex] of patterns) {
+    const match = text.match(regex);
+    if (match && match[1]) {
+      const value = Number(match[1]);
+      if (!Number.isNaN(value)) {
+        counts[key] = value;
+        matchedAny = true;
+      }
+    }
+  }
+
+  return matchedAny ? counts : null;
+}
+
 export function InteractiveTerminalWorkbench() {
   const [source, setSource] = useState(sampleContract);
   const [filename, setFilename] = useState("Vault.vy");
@@ -57,6 +96,40 @@ export function InteractiveTerminalWorkbench() {
 
   const selectedInput: CommandInput = selected?.input ?? "none";
   const canRun = Boolean(selected?.runnable && selected?.preset);
+
+  const combinedOutput = useMemo(() => {
+    const stdoutText = result?.stdout ?? liveStdout;
+    const stderrText = result?.stderr ?? liveStderr;
+    const combined = [stdoutText, stderrText].filter(Boolean).join("\n");
+    return combined.trim();
+  }, [result, liveStdout, liveStderr]);
+
+  const severityCounts = useMemo(() => {
+    const parsed = parseSeverityCounts(combinedOutput);
+    if (parsed) return parsed;
+    const text = combinedOutput.toUpperCase();
+    return {
+      critical: countMatches(text, /\bCRITICAL\b/g),
+      high: countMatches(text, /\bHIGH\b/g),
+      medium: countMatches(text, /\bMEDIUM\b/g),
+      low: countMatches(text, /\bLOW\b/g),
+      info: countMatches(text, /\bINFO\b/g),
+    };
+  }, [combinedOutput]);
+
+  const analysisSnapshot = useMemo(() => {
+    if (!combinedOutput) return null;
+    const commandText = liveCommand ?? result?.command ?? selected?.command;
+    return {
+      command: commandText,
+      preset: result?.preset ?? selected?.preset,
+      durationMs: result?.durationMs,
+      exitCode: result?.exitCode ?? null,
+      timedOut: result?.timedOut ?? false,
+      severityCounts,
+      outputExcerpt: combinedOutput.slice(0, 12_000),
+    };
+  }, [combinedOutput, liveCommand, result, selected, severityCounts]);
 
   const runDisabled =
     loading ||
@@ -333,6 +406,8 @@ export function InteractiveTerminalWorkbench() {
             The browser executes curated command presets only. No raw shell access is exposed.
           </p>
         </article>
+
+        <SarvamAssistPanel analysis={analysisSnapshot} analysisText={combinedOutput} />
       </div>
 
       <div className="fixed inset-x-3 bottom-3 z-[55] md:hidden">

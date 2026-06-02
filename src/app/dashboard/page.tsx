@@ -13,8 +13,12 @@ export default async function DashboardPage() {
           <p className="text-xs uppercase tracking-[0.22em] text-slate-500">Live Metrics</p>
           <h1 className="mt-3 text-4xl font-bold text-slate-900">Telemetry + analysis dashboard</h1>
           <p className="mt-3 text-slate-700">
-            This page combines live package/repository telemetry with real detector and scoring data from
-            Vyper Guard documentation.
+            This page combines live package/repository telemetry with detector and scoring references aligned to
+            the current Vyper Guard implementation. Charts reflect severity mix, scoring policy, risk-domain grouping,
+            and remediation/suppression capability coverage, plus one chart from actual example-contract scan runs.
+          </p>
+          <p className="mt-1 text-xs text-slate-500">
+            Download analytics are pulled from Pepy API when <code className="rounded bg-slate-100 px-1 py-0.5">PEPY_API_KEY</code> is configured.
           </p>
           <p className="mt-2 text-xs text-slate-500">Last refresh: {new Date(intel.fetchedAt).toLocaleString()}</p>
 

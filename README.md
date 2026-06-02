@@ -55,3 +55,7 @@ npm run start
 - The visual language intentionally avoids generic purple/black styling.
 - Chart data for detector/severity/scoring is based on Vyper Guard references.
 - Live telemetry gracefully falls back if external APIs are unavailable.
+
+Good. Atleast now its looking better. Now the changes. The main part. Listen properly:
+--> So, We nned to keep this open soruce? But how much. In this codebase if we implement the billing or api keys system then anyone can clone and bypass right??
+--> And in premium, They should get much more access.. Without that basics should be free.. Like not allowed scan or analyse entire repo.. But single file should be allowed.. Like that something. And Commands to show the status and other things. Not like messing up things badly

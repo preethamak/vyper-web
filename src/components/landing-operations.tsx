@@ -9,25 +9,25 @@ const phases = [
     step: "Phase 01",
     title: "Source Risk Profiling",
     icon: Compass,
-    detail: "Contract source is profiled with deterministic detector and semantic passes.",
+    detail: "A single .vy contract is parsed, checked, and scored through deterministic detector and semantic passes.",
   },
   {
     step: "Phase 02",
-    title: "Signal Prioritization",
+    title: "Signal Prioritization (Optional AI)",
     icon: TerminalSquare,
-    detail: "Findings are ranked by severity and grouped into reviewer-ready triage lanes.",
+    detail: "Findings are ranked by severity, with optional advisory AI triage metadata that never overrides verdicts.",
   },
   {
     step: "Phase 03",
     title: "Remediation Planning",
     icon: Wrench,
-    detail: "Fix plans are generated under tier constraints with dry-run-safe controls.",
+    detail: "Fix plans run under tier constraints with dry-run mode, explicit write prompts, and report artifacts.",
   },
   {
     step: "Phase 04",
-    title: "CI Policy Enforcement",
+    title: "CI + Runtime Operations",
     icon: GitBranchPlus,
-    detail: "Outputs are exported for severity gate checks and release-readiness decisions.",
+    detail: "JSON/Markdown artifacts drive CI policy gates, while explorer/address and monitor flows support deployed contracts.",
   },
 ];
 

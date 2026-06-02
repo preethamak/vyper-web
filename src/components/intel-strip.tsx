@@ -11,23 +11,32 @@ function formatNumber(value: number | null) {
 }
 
 export function IntelStrip({ intel }: Props) {
+  const downloadsSourceLabel =
+    intel.downloads.source === "pepy"
+      ? "Pepy"
+      : intel.downloads.source === "pypistats"
+        ? "PyPIStats fallback"
+        : "Unavailable";
+
   const cards = [
     {
-      label: "PyPI last-30d downloads",
-      value: formatNumber(intel.pypi.downloads30d),
+      label: "Pepy total downloads",
+      value: formatNumber(intel.downloads.total),
+      icon: Download,
+    },
+    {
+      label: "Downloads (last 30d)",
+      value: formatNumber(intel.downloads.last30d),
       icon: Download,
     },
     { label: "GitHub stars", value: formatNumber(intel.github.stars), icon: Star },
     { label: "GitHub forks", value: formatNumber(intel.github.forks), icon: GitFork },
-    {
-      label: "Open issues",
-      value: formatNumber(intel.github.openIssues),
-      icon: GitGraph,
-    },
+    { label: "Open issues", value: formatNumber(intel.github.openIssues), icon: GitGraph },
   ];
 
   return (
     <section className="mx-auto mt-6 w-full max-w-7xl px-4 sm:px-6 lg:px-10">
+      <p className="mb-2 text-xs uppercase tracking-[0.16em] text-slate-500">Download source: {downloadsSourceLabel}</p>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {cards.map((card) => (
           <article key={card.label} className="surface-card brutal-card-hover rounded-xl p-4">

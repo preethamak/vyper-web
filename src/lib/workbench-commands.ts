@@ -32,9 +32,9 @@ export const workbenchCommands: WorkbenchCommand[] = [
   },
   {
     id: "analyze-ai",
-    label: "Analyze + AI",
-    command: "vyper-guard analyze contracts/Vault.vy --ai",
-    description: "Run deterministic analysis with AI-assisted prioritization.",
+    label: "Analyze + AI Triage",
+    command: "vyper-guard analyze contracts/Vault.vy --ai-triage --ai-triage-mode llm --allow-ai-fallback",
+    description: "Run deterministic analysis with advisory AI triage metadata.",
     runnable: true,
     input: "source",
     preset: "analyze-ai",
@@ -60,7 +60,7 @@ export const workbenchCommands: WorkbenchCommand[] = [
   {
     id: "fix-dry-run",
     label: "Fix Dry Run",
-    command: "vyper-guard fix contracts/Vault.vy --fix-dry-run --max-auto-fix-tier B",
+    command: "vyper-guard analyze contracts/Vault.vy --fix-dry-run --max-auto-fix-tier B",
     description: "Preview remediation plan without applying file writes.",
     runnable: true,
     input: "source",
@@ -104,7 +104,7 @@ export const workbenchCommands: WorkbenchCommand[] = [
   {
     id: "ai-config-model",
     label: "AI Config Model",
-    command: "vyper-guard ai config set model gpt-5.3-codex",
+    command: "vyper-guard ai config set model gpt-5",
     description: "Set AI model for assistive reports (reference in web UI).",
     runnable: false,
     input: "none",

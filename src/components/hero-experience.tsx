@@ -43,8 +43,8 @@ export function HeroExperience() {
                 Contract security that feels operational.
               </h1>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-700 lg:mt-5 lg:text-lg">
-                Trusted Vyper security signals from local development to production gates — fast to run,
-                easy to review, and strict where it matters.
+                Deterministic Vyper security checks from local development to CI gates, with advisory AI triage,
+                explorer intelligence, and controlled remediation workflows.
               </p>
 
               <div className="mt-5 flex flex-wrap gap-2 lg:mt-6">
@@ -113,14 +113,14 @@ export function HeroExperience() {
                 <p className="text-sm font-semibold text-slate-900">Live workflow preview</p>
               </div>
               <TerminalFrame title="vault-audit" className="mt-0">
-                {`vyper-guard analyze contracts/Vault.vy
+                {`vyper-guard analyze contracts/Vault.vy --ai-triage
 # detectors loaded: 12
 # critical: ${severityCounts.CRITICAL}
-# high: ${severityCounts.HIGH}
-# score: 74 / 100
+# high: ${severityCounts.HIGH} (dynamic severities may vary by context)
+# score model: base 100 with per-tier caps + detector-failure trust penalty
 # recommendation: Review required
 
-vyper-guard fix contracts/Vault.vy --fix-dry-run --max-auto-fix-tier B
+vyper-guard analyze contracts/Vault.vy --fix-dry-run --max-auto-fix-tier B
 # proposed edits: 3
 # write operations: 0`}
               </TerminalFrame>
