@@ -50,6 +50,35 @@ npm run build
 npm run start
 ```
 
+## Environment Variables
+
+Keep local development values in `.env.local`.
+
+For deployed environments, set the same variables in your hosting provider's project or service settings instead of committing them to the repo.
+
+Server-side variables used by this app:
+
+- `SARVAM_API_KEY`
+- `SARVAM_CHAT_MODEL` (optional)
+- `SARVAM_TTS_MODEL` (optional)
+- `PEPY_API_KEY` (optional)
+- `VYPER_GUARD_BIN` (recommended for workbench)
+- `VYPER_GUARD_DISABLE_BOOTSTRAP` (optional)
+
+## Workbench Deployment
+
+The `/workbench` page does not only need env vars. Its API routes spawn a real CLI process from the server runtime in `src/app/api/terminal-run/route.ts` and `src/app/api/terminal-run/stream/route.ts`.
+
+Production therefore needs all of the following on the server that runs Next.js:
+
+- Node.js runtime for the app
+- Python (`python3` or `python`)
+- `vyper-guard` installed globally, or `VYPER_GUARD_BIN` set to its absolute path
+- Permission to run child processes with `spawn(...)`
+- Writable temporary storage for `/tmp`
+
+If your platform only provides serverless functions without a stable system Python / CLI runtime, the workbench will not behave like local development even if env vars are set correctly. In that case, deploy this app on a VM, container, or another host where you control the OS packages and executable paths.
+
 ## Notes
 
 - The visual language intentionally avoids generic purple/black styling.

@@ -44,8 +44,16 @@ function countMatches(text: string, regex: RegExp) {
   return matches ? matches.length : 0;
 }
 
+type SeverityCounts = {
+  critical: number;
+  high: number;
+  medium: number;
+  low: number;
+  info: number;
+};
+
 function parseSeverityCounts(text: string) {
-  const patterns: Array<[keyof ReturnType<typeof parseSeverityCounts>, RegExp]> = [
+  const patterns: Array<[keyof SeverityCounts, RegExp]> = [
     ["critical", /CRITICAL\s+(\d+)/i],
     ["high", /HIGH\s+(\d+)/i],
     ["medium", /MEDIUM\s+(\d+)/i],
@@ -53,7 +61,7 @@ function parseSeverityCounts(text: string) {
     ["info", /INFO\s+(\d+)/i],
   ];
 
-  const counts = {
+  const counts: SeverityCounts = {
     critical: 0,
     high: 0,
     medium: 0,
